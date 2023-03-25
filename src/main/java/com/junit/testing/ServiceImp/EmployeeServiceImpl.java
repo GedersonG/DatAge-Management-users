@@ -5,11 +5,13 @@ import com.junit.testing.Exception.ResourceNotFoundException;
 import com.junit.testing.Repository.EmployeeRepository;
 import com.junit.testing.Service.EmployeeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class EmployeeServiceImpl implements EmployeeService{
     private EmployeeRepository employeeRepository;
 

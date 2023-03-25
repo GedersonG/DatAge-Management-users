@@ -5,14 +5,14 @@ import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter @Setter
 
 @Entity
 @Table(name = "employees")
 public class EmployeeEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "first_name", nullable = false)
