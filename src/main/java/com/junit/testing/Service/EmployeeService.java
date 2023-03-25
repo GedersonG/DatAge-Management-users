@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface EmployeeService {
     EmployeeEntity saveEmployee(EmployeeEntity employee) throws ResourceNotFoundException;
     List<EmployeeEntity> getAllEmployees();
-    Optional<EmployeeEntity> getEmployeeById(long id);
+    Optional<EmployeeEntity> getEmployeeById(long id) throws ResourceNotFoundException;
     EmployeeEntity updateEmployee(EmployeeEntity updateEmployee);
     void deleteEmployee(long id);
 }

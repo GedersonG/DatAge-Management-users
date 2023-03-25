@@ -19,30 +19,34 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public EmployeeEntity saveEmployee(EmployeeEntity employee) throws ResourceNotFoundException {
-        Optional<EmployeeEntity> savedEmployee = employeeRepository.findByEmail(employee.getEmail());
+        Optional<EmployeeEntity> savedEmployee = this.employeeRepository.findByEmail(employee.getEmail());
         if(savedEmployee.isPresent()){
-            throw new ResourceNotFoundException("Employee already exist with given email:" + employee.getEmail());
+            throw new ResourceNotFoundException("Employee already exist with given email: " + employee.getEmail());
         }
-        return employeeRepository.save(employee);
+        return this.employeeRepository.save(employee);
     }
 
     @Override
     public List<EmployeeEntity> getAllEmployees() {
-        return null;
+        return this.employeeRepository.findAll();
     }
 
     @Override
-    public Optional<EmployeeEntity> getEmployeeById(long id) {
-        return Optional.empty();
+    public Optional<EmployeeEntity> getEmployeeById(long id) throws ResourceNotFoundException {
+        Optional<EmployeeEntity> employee = this.employeeRepository.findById(id);
+        if(!employee.isPresent()){
+            throw new ResourceNotFoundException("Employee with id " + id + " is not found.");
+        }
+        return employee;
     }
 
     @Override
     public EmployeeEntity updateEmployee(EmployeeEntity updateEmployee) {
-        return null;
+        return this.employeeRepository.save(updateEmployee);
     }
 
     @Override
     public void deleteEmployee(long id) {
-
+        this.employeeRepository.deleteById(id);
     }
 }
