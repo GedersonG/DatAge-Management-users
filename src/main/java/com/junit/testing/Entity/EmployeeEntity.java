@@ -1,16 +1,14 @@
 package com.junit.testing.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 
+@Entity
+@Table(name = "employees")
 public class EmployeeEntity {
 
     @Id
@@ -25,4 +23,5 @@ public class EmployeeEntity {
 
     @Column(nullable = false)
     private String email;
+
 }
