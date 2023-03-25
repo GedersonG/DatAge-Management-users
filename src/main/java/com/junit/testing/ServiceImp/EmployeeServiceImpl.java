@@ -32,12 +32,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Optional<EmployeeEntity> getEmployeeById(long id) throws ResourceNotFoundException {
+    public EmployeeEntity getEmployeeById(long id) throws ResourceNotFoundException {
         Optional<EmployeeEntity> employee = this.employeeRepository.findById(id);
         if(!employee.isPresent()){
             throw new ResourceNotFoundException("Employee with id " + id + " is not found.");
         }
-        return employee;
+        return employee.get();
     }
 
     @Override
