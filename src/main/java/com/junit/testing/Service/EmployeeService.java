@@ -1,14 +1,14 @@
 package com.junit.testing.Service;
 
 import com.junit.testing.Entity.EmployeeEntity;
-import com.junit.testing.Exception.ResourceNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
-    EmployeeEntity saveEmployee(EmployeeEntity employee) throws ResourceNotFoundException;
+    EmployeeEntity saveEmployee(EmployeeEntity employee);
     List<EmployeeEntity> getAllEmployees();
-    EmployeeEntity getEmployeeById(long id) throws ResourceNotFoundException;
+    Optional<EmployeeEntity> getEmployeeById(long id);
     EmployeeEntity updateEmployee(EmployeeEntity updateEmployee);
     void deleteEmployee(long id);
 }

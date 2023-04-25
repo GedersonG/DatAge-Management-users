@@ -1,7 +1,6 @@
 package com.junit.testing.ServiceImp;
 
 import com.junit.testing.Entity.EmployeeEntity;
-import com.junit.testing.Exception.ResourceNotFoundException;
 import com.junit.testing.Repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -45,7 +44,7 @@ class EmployeeServiceImplTest {
 
     @DisplayName("JUnit test for saveEmployee method")
     @Test
-    void givenEmployeeObject_whenSaveEmployee_thenReturnEmployeeObject() throws ResourceNotFoundException {
+    void givenEmployeeObject_whenSaveEmployee_thenReturnEmployeeObject() {
         // GIVEN
         given(employeeRepository.findByEmail(employee.getEmail())).willReturn(Optional.empty());
         given(employeeRepository.save(employee)).willReturn(employee);
@@ -64,7 +63,7 @@ class EmployeeServiceImplTest {
         given(employeeRepository.findByEmail(employee.getEmail())).willReturn(Optional.of(employee));
 
         // WHEN
-        assertThrows(ResourceNotFoundException.class, () -> {
+        assertThrows(null, () -> {
             employeeService.saveEmployee(employee);
         });
 
@@ -114,12 +113,12 @@ class EmployeeServiceImplTest {
 
     @DisplayName("JUnit test for getEmployeeById method")
     @Test
-    public void givenEmployeeId_whenGetEmployeeById_thenReturnEmployeeObject() throws ResourceNotFoundException {
+    public void givenEmployeeId_whenGetEmployeeById_thenReturnEmployeeObject() {
         // GIVEN
         given(employeeRepository.findById(1L)).willReturn(Optional.of(employee));
 
         // WHEN
-        EmployeeEntity employeeEntity = employeeService.getEmployeeById(1L);
+        Optional<EmployeeEntity> employeeEntity = employeeService.getEmployeeById(1L);
 
         // THEN
         assertThat(employeeEntity).isNotNull();
@@ -132,7 +131,7 @@ class EmployeeServiceImplTest {
         given(employeeRepository.findById(1L)).willReturn(Optional.empty());
 
         // WHEN
-        assertThrows(ResourceNotFoundException.class, () -> {
+        assertThrows(null, () -> {
             employeeService.getEmployeeById(1L);
         });
 

@@ -1,7 +1,6 @@
 package com.junit.testing.ServiceImp;
 
 import com.junit.testing.Entity.EmployeeEntity;
-import com.junit.testing.Exception.ResourceNotFoundException;
 import com.junit.testing.Repository.EmployeeRepository;
 import com.junit.testing.Service.EmployeeService;
 import org.springframework.stereotype.Service;
@@ -20,11 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public EmployeeEntity saveEmployee(EmployeeEntity employee) throws ResourceNotFoundException {
-        Optional<EmployeeEntity> savedEmployee = this.employeeRepository.findByEmail(employee.getEmail());
-        if(savedEmployee.isPresent()){
-            throw new ResourceNotFoundException("Employee already exist with given email: " + employee.getEmail());
-        }
+    public EmployeeEntity saveEmployee(EmployeeEntity employee) {
         return this.employeeRepository.save(employee);
     }
 
@@ -34,12 +29,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public EmployeeEntity getEmployeeById(long id) throws ResourceNotFoundException {
-        Optional<EmployeeEntity> employee = this.employeeRepository.findById(id);
-        if(!employee.isPresent()){
-            throw new ResourceNotFoundException("Employee with id " + id + " is not found.");
-        }
-        return employee.get();
+    public Optional<EmployeeEntity> getEmployeeById(long id){
+        return this.employeeRepository.findById(id);
     }
 
     @Override

@@ -3,9 +3,11 @@ package com.junit.testing.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Data
 @Builder
 
 @Entity
@@ -25,4 +27,6 @@ public class EmployeeEntity {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private Date entryDate;
 }
